@@ -51,3 +51,20 @@
   - 저장 / INSERT, UPDATE
   - 조회 / SELECT
   - 삭제 / DELETE
+
+4. JPA와 SQL 비교
+- save()
+  - songRepository.save(song);
+  - INSERT INTO songs
+    (title, artist, album, genre, release_year)
+    VALUES
+    (?, ?, ?, ?, ?);
+- findAll()
+  - songRepository.findAll();
+  - SELECT * FROM songs;
+- findById()
+  - songRepository.findById(id);
+  - SELECT * FROM songs WHERE id = ?;
+- deleteById()
+  - songRepository.deleteById(id);
+  - DELETE FROM songs WHERE id = ?;
