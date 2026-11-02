@@ -85,3 +85,28 @@
 - 발생한 문제
   - 처음 저장소에 연결할 때, Render에서 리스트에 안나오는 문제 발생, 깃허브에 재연결하고, 접근 가능 저장소 public 전체로 설정
 
+6. Weekly Report
+- 배운 점
+   - JPA를 활용해 CRUD 서비스를 구현하는 방법을 배울 수 있었다.
+   - 엔티티 필드가 데이터 베이스의 칼럼에 연결된다.
+   - 환경 변수를 사용해 소스코드와 분리할 수 있다.
+- 문제: 배포 API 요청 404 오류 및 소스 코드 작성 후 실행하는 과정에서 오류 발생
+  - 실제 API 경로가 /api/songs 였음
+  - 환경변수 등록 중 값 작성중에 공백이 있어 제대로 반영이 안되었음
+- 주요 코드
+  - songRepository.findAll();
+    songRepository.findById(id);
+    songRepository.save(song);
+    songRepository.deleteById(id);
+  - CRUD 관련 코드
+  - 전체 목록 조회
+  - 특정 ID 노래 조회
+  - 새 노래 저장, 기존 entity 저장
+  - 특정 ID 노래 삭제
+- AI 사용
+  - 오류 발생 시에 AI에 원인과 해결 방안 질문
+  - Annotation 이해하도록 설명 요청
+- 직접 검증
+  - render 연결 시 deploy 오류 수정 등등
+- AI 사용률
+  - 25%
