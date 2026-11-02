@@ -68,3 +68,20 @@
 - deleteById()
   - songRepository.deleteById(id);
   - DELETE FROM songs WHERE id = ?;
+
+5. 배포 및 환경 설정
+- 환경변수
+  - DB_URL 
+  - DB_USERNAME
+  - DB_PASSWORD
+- Render 배포 과정
+  1. 개인 저장소에 프로젝트 업로드
+  2. dockerfile 작성
+  3. render에서 깃허브 저장소 연결
+  4. 실행 환경 docker
+  5. 환경변수 설정
+  6. 빌드 및 실행
+  7. 생성된 배포 링크 접속 및 테스트
+- 발생한 문제
+  - 처음 저장소에 연결할 때, Render에서 리스트에 안나오는 문제 발생, 깃허브에 재연결하고, 접근 가능 저장소 public 전체로 설정
+
