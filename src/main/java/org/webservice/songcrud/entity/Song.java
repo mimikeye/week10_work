@@ -8,9 +8,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import jakarta.persistence.EntityListeners;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import java.time.LocalDateTime;
+
 @Entity
 // 클래스를 Entity로 지정해서 데이터 베이스의 테이블과 매핑한다.
 @Table(name = "songs")
+@EntityListeners(AuditingEntityListener.class)
 public class Song {
     //Id는 데이터 베이스 테이블에서 기본 키를 제공한다.
     @Id
@@ -33,6 +40,14 @@ public class Song {
 
     @Column(nullable = false)
     private Integer releaseYear;
+
+    @CreatedDate
+    @Column(name = "created_date", updatable = false)
+    private LocalDateTime createdDate;
+
+    @LastModifiedDate
+    @Column(name = "last_modified_date")
+    private LocalDateTime lastModifiedDate;
 
     protected Song() { }
 
