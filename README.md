@@ -4,8 +4,8 @@
    - 제목, 장르, 발매 연도 등등
    - 생성, 수정 시간 기록
 
-   - Repository:
-   - Render URL:
+   - Repository: https://github.com/2026-2-WebService/assign10-c01-22500250.git
+   - Render URL: https://week10-work.onrender.com
 
 2. 주요 구현 내용 및 결과
    - Query Method
