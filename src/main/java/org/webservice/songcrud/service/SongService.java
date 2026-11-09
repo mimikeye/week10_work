@@ -35,6 +35,7 @@ public class SongService {
         return SongResponse.from(findEntity(id));
     }
 
+    //메서드를 하나의 트랜잭션으로 관리한다. Entity 필드가 변하면  JPA가 자동으로 반영한다. -> Dirty Checking
     @Transactional
     public SongResponse update(Long id, SongRequest request) {
         Song song = findEntity(id);
