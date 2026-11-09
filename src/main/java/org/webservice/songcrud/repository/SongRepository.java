@@ -2,9 +2,15 @@ package org.webservice.songcrud.repository;
 
 import org.webservice.songcrud.entity.Song;
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
 //Song은 Entity, Long은 Entity의 기본 키 타입을 의미한다.
 public interface SongRepository extends JpaRepository<Song, Long> {
+    List<Song> findByTitleContainingIgnoreCase(String keyword);
+    List<Song> findByGenreAndReleaseYearBetween(
+            String genre, Integer startYear, Integer endYear
+    );
+    List<Song> findAllByOrderByReleaseYearDesc();
 }
 
 //save(): Entity를 데이터 베이스에 저장하거나 수정

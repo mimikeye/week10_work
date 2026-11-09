@@ -7,6 +7,7 @@ import org.webservice.songcrud.repository.SongRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class SongService {
     }
 
     public SongResponse create(SongRequest request) {
+        //새 Entity를 save()로 전달, 데이터 베이스에 새 데이터를 등록한다.
         Song saved = repository.save(new Song(request));
         return SongResponse.from(saved);
     }
@@ -33,10 +35,11 @@ public class SongService {
         return SongResponse.from(findEntity(id));
     }
 
+    @Transactional
     public SongResponse update(Long id, SongRequest request) {
         Song song = findEntity(id);
         song.update(request);
-        return SongResponse.from(repository.save(song));
+        return SongResponse.from(song);
     }
 
     public void delete(Long id) {
@@ -52,4 +55,28 @@ public class SongService {
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Song not found: " + id));
     }
+
+    public List<SongResponse> searchByTitle(String keyword) {
+        return repository.findByTitleContainingIgnoreCase(keyword)
+                .stream()
+                .map(SongResponse::from)
+                .toList();
+    }
+
+    public List<SongResponse> searchByGenreAndYear(
+            String genre, Integer startYear, Integer endYear) {
+        return repository.findByGenreAndReleaseYearBetween(
+                        genre, startYear, endYear)
+                .stream()
+                .map(SongResponse::from)
+                .toList();
+    }
+
+    public List<SongResponse> findAllOrderByReleaseYearDesc() {
+        return repository.findAllByOrderByReleaseYearDesc()
+                .stream()
+                .map(SongResponse::from)
+                .toList();
+    }
+
 }

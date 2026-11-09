@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.net.URI;
 import java.util.List;
@@ -57,5 +58,25 @@ public class SongController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search/title")
+    public List<SongResponse> searchByTitle(
+            @RequestParam String keyword) {
+        return service.searchByTitle(keyword);
+    }
+
+    @GetMapping("/search/genre-year")
+    public List<SongResponse> searchByGenreAndYear(
+            @RequestParam String genre,
+            @RequestParam Integer startYear,
+            @RequestParam Integer endYear) {
+        return service.searchByGenreAndYear(
+                genre, startYear, endYear);
+    }
+
+    @GetMapping("/search/sort")
+    public List<SongResponse> findAllOrderByReleaseYearDesc() {
+        return service.findAllOrderByReleaseYearDesc();
     }
 }
