@@ -9,12 +9,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
+// 클래스를 Entity로 지정해서 데이터 베이스의 테이블과 매핑한다.
 @Table(name = "songs")
 public class Song {
+    //Id는 데이터 베이스 테이블에서 기본 키를 제공한다.
     @Id
+    //기본 키 값을 자동 생성
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //Entity의 필드를 데이터 베이스의 테이블의 Column과 매핑해 연결된다.
     @Column(nullable = false, length = 200)
     private String title;
 
